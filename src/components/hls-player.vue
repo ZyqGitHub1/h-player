@@ -23,6 +23,11 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      hls: null,
+    };
+  },
   computed: {
     player() {
       return this.$refs.plyr.player;
@@ -31,14 +36,21 @@ export default {
       return this.$refs.video;
     },
   },
-  mounted() {
-    if (!Hls.isSupported()) {
-      this.video.src = this.source;
-    } else {
-      const hls = new Hls();
-      hls.loadSource(this.source);
-      hls.attachMedia(this.video);
-    }
+  watch: {
+    source() {
+      if (!Hls.isSupported()) {
+        this.video.src = this.source;
+      } else {
+        const hls = new Hls();
+        this.hls = hls;
+        hls.loadSource(this.source);
+        hls.attachMedia(this.video);
+        this.$once('hook:beforeDestroy', () => {
+          hls.stopLoad();
+          hls.destroy();
+        });
+      }
+    },
   },
 };
 </script>
