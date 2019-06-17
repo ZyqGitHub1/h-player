@@ -3,6 +3,7 @@
     <vue-plyr
       ref="plyr"
       class="player-wrapper"
+      :options="options"
     >
       <video
         preload="none"
@@ -26,6 +27,20 @@ export default {
   data() {
     return {
       hls: null,
+      options: {
+        controls: [
+          'play-large',
+          'play',
+          'progress',
+          'current-time',
+          'mute',
+          'volume',
+          'captions',
+          'settings',
+          'airplay',
+          'fullscreen',
+        ],
+      },
     };
   },
   computed: {
