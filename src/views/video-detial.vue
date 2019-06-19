@@ -44,6 +44,7 @@
 <script>
 import got from 'got';
 import util from 'util';
+import path from 'path';
 import { parseString } from 'xml2js';
 import { clipboard } from 'electron';
 import HlsPlayer from '@/components/hls-player';
@@ -110,7 +111,8 @@ export default {
         });
     },
     copyVideoMeta() {
-      clipboard.writeText(`name: ${this.videoInfo.name}\nuri: ${this.videoInfo.dl.dd._}`);
+      const dirName = path.parse(this.videoInfo.name).name;
+      clipboard.writeText(`name: ${dirName}\nuri: ${this.videoInfo.dl.dd._}`);
     },
   },
 };
