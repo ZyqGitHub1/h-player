@@ -31,6 +31,13 @@
         <hls-player :source="videoInfo.dl.dd._"></hls-player>
       </div>
     </section>
+    <section class="section">
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button" @click="copyVideoMeta">复制下载信息</button>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -38,6 +45,7 @@
 import got from 'got';
 import util from 'util';
 import { parseString } from 'xml2js';
+import { clipboard } from 'electron';
 import HlsPlayer from '@/components/hls-player';
 
 const parseStringSync = util.promisify(parseString);
@@ -100,6 +108,9 @@ export default {
         .finally(() => {
           this.loading = false;
         });
+    },
+    copyVideoMeta() {
+      clipboard.writeText(`name: ${this.videoInfo.name}\nuri: ${this.videoInfo.dl.dd._}`);
     },
   },
 };
