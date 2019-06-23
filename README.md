@@ -15,6 +15,16 @@ npm run serve
 npm run build
 ```
 
+### Compiles and hot-reloads for electron development
+```
+npm run electron:serve
+```
+
+### Compiles and minifies for electron production
+```
+npm run electron:build
+```
+
 ### Run your tests
 ```
 npm run test
