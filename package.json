@@ -17,7 +17,7 @@
     "bulma": "^0.7.5",
     "bulma-extensions": "^6.2.7",
     "core-js": "^2.6.5",
-    "got": "^9.6.0",
+    "got": "^11.8.5",
     "hls.js": "^0.12.4",
     "lodash": "^4.17.11",
     "normalize.css": "^8.0.1",
